@@ -15,6 +15,10 @@ function Character() {
   const { setError } = errorContext;
 
   useEffect(() => {
+    setError({});
+  }, []);
+  
+  useEffect(() => {
     fetch(
       `${
         envObj.VITE_MARVEL_API_URL
