@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useState, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { ErrorContext } from "../App";
 import md5 from "md5";
 const envObj = import.meta.env;

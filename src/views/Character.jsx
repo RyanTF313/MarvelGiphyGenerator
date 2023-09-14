@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import Gif from "../components/Gif";
 import Details from "../components/Details";
-import { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { ErrorContext } from "../App";
 import md5 from "md5";

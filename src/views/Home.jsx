@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import ResultsList from "../components/ResultsList";
 import Search from "../components/Search";
-import { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { ErrorContext } from "../App";
 
 const homeStyle = {
@@ -17,12 +17,10 @@ function Home() {
   const [isLoading, setIsLoading] = useState(false);
   const errorContext = useContext(ErrorContext);
   const { setError } = errorContext;
-  
-  useEffect(()=>{
-    setError({})
-  },[])
 
-
+  useEffect(() => {
+    setError({});
+  }, []);
 
   return (
     <div className="Home" style={homeStyle}>
