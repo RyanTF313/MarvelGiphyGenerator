@@ -45,6 +45,7 @@ function Search({ setCharacters, setIsLoading }) {
     setInputValue(e.target.value);
     setCharacters(null);
     setIsLoading(true);
+    setError({})
     if (!e.target.value) {
       setIsLoading(false);
       return;

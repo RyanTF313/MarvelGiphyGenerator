@@ -26,7 +26,6 @@ function Home() {
     <div className="Home" style={homeStyle}>
       <Search
         setCharacters={setCharacters}
-        setError={setError}
         setIsLoading={setIsLoading}
       />
       {!isLoading ? (
