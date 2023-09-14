@@ -1,8 +1,8 @@
 import React, { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import App from "./App";
-//IMPORT BrowserRouter and rename it to Router
-import { BrowserRouter as Router } from "react-router-dom";
+//IMPORT HashRouter and rename it to Router
+import { HashRouter as Router } from "react-router-dom";
 
 const container = document.getElementById("root");
 const root = createRoot(container);
