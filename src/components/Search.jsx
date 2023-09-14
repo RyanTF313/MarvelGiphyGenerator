@@ -22,7 +22,7 @@ const inputStyle = {
   outline: "none",
   border: "3px solid #f78f3f",
   borderRadius: "10px",
-  color: '#f78f3f'
+  color: "#f78f3f",
 };
 
 const btnStyle = {
@@ -33,7 +33,7 @@ const btnStyle = {
   border: "3px solid #f78f3f",
   borderRadius: "10px",
   brderleft: "none",
-  color: '#f78f3f'
+  color: "#f78f3f",
 };
 
 function Search({ setCharacters, setIsLoading }) {
@@ -43,6 +43,32 @@ function Search({ setCharacters, setIsLoading }) {
 
   const handleChange = (e) => {
     setInputValue(e.target.value);
+    setCharacters(null);
+    setIsLoading(true);
+    if (!e.target.value) {
+      setIsLoading(false);
+      return;
+    }
+    fetch(
+      `${
+        envObj.VITE_MARVEL_API_URL
+      }v1/public/characters?ts=${new Date().getTime()}&apikey=${
+        envObj.VITE_MARVEL_PUBLIC_API_KEY
+      }&hash=${md5(
+        new Date().getTime() +
+          envObj.VITE_MARVEL_PRIVATE_API_KEY +
+          envObj.VITE_MARVEL_PUBLIC_API_KEY
+      )}&nameStartsWith=${e.target.value}&limit=100`
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        setCharacters(data.data.results);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        setIsLoading(false);
+        setError(err);
+      });
   };
 
   const handleSubmit = (e) => {

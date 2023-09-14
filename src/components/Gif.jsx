@@ -5,6 +5,7 @@ const envObj = import.meta.env;
 
 function Gif({ character }) {
   const [gifSrc, setGifSrc] = useState(null);
+  const [emptyResults, setEmptyResults] = useState(false);
   const errorContext = useContext(ErrorContext);
   const {setError} = errorContext
 
@@ -12,12 +13,15 @@ function Gif({ character }) {
     e.preventDefault();
     fetch(
       `${envObj.VITE_GIPHY_API_SEARCH_URL}?q=${
-        character.name + " Marvel Studios"
+        character.name + " marvel-comics"
       }&api_key=${envObj.VITE_GIPHY_API_KEY}`
     )
       .then((res) => res.json())
       .then(({ data }) => {
         const gif = data[Math.floor(Math.random() * data.length)];
+        if (!Object.keys(gif)){
+          setEmptyResults(true)
+        }
         setGifSrc(gif);
       })
       .catch((err) => {
@@ -53,6 +57,7 @@ function Gif({ character }) {
           style={{ display: "flex", width: "500px", height: "500px" }}
         />
       )}
+      {emptyResults && <div>No Results found</div>}
     </div>
   );
 }
